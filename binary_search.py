@@ -176,7 +176,7 @@ def argmin(f, lo, hi, epsilon=1e-3):
 ##############################################################################
 
 
-def find_boundaries(f, lo=-1, hi=1):
+def find_boundaries(f):
     '''
     Returns a tuple (lo,hi).
     If f is a convex function, then the
@@ -194,13 +194,16 @@ def find_boundaries(f, lo=-1, hi=1):
         you're done; return lo,hi
     '''
 
-    mid = (lo + hi) / 2
-    if f(lo) > f(mid):
-        return find_boundaries(f, lo=lo * 2, hi=hi)
-    elif f(hi) < f(mid):
-        return find_boundaries(f, lo=lo, hi=hi * 2)
-    else:
-        return (lo, hi)
+    lo = -1
+    hi = 1
+    while True:
+        mid = (lo + hi) / 2
+        if f(lo) < f(mid):
+            lo *= 2
+        elif f(hi) < f(mid):
+            hi *= 2
+        else:
+            return lo, hi
 
 
 def argmin_simple(f, epsilon=1e-3):
