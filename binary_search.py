@@ -32,7 +32,7 @@ def find_smallest_positive(xs):
     if len(xs) == 0:
         return None
 
-    def go(left, right):
+    def helper(left, right):
         if left > right:
             return None
         mid = (left + right) // 2
@@ -43,16 +43,16 @@ def find_smallest_positive(xs):
                 right = mid - 1
         else:
             left = mid + 1
-        return go(left, right)
+        return helper(left, right)
 
-    return go(0, len(xs) - 1)
+    return helper(0, len(xs) - 1)
 
 
 def find_lower_bound(xs, x):
     if len(xs) == 0:
         return False
 
-    def go(left, right):
+    def helper(left, right):
         if left == right:
             if xs[left] == x:
                 return left
@@ -63,16 +63,16 @@ def find_lower_bound(xs, x):
             left = mid + 1
         else:
             right = mid
-        return go(left, right)
+        return helper(left, right)
 
-    return go(0, len(xs) - 1)
+    return helper(0, len(xs) - 1)
 
 
 def find_upper_bound(xs, x):
     if len(xs) == 0:
         return False
 
-    def go(left, right):
+    def helper(left, right):
         if left > right:
             return False
         mid = (left + right) // 2
@@ -85,9 +85,9 @@ def find_upper_bound(xs, x):
                 return mid + 1
             else:
                 left = mid + 1
-        return go(left, right)
+        return helper(left, right)
 
-    return go(0, len(xs) - 1)
+    return helper(0, len(xs) - 1)
 
 
 def count_repeats(xs, x):
