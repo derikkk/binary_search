@@ -37,7 +37,7 @@ def find_smallest_positive(xs):
             return None
         mid = (left + right) // 2
         if xs[mid] > 0:
-            if mid == 0 or xs[mid-1] <= 0:
+            if mid == 0 or xs[mid - 1] <= 0:
                 return mid
             else:
                 right = mid - 1
@@ -176,7 +176,7 @@ def argmin(f, lo, hi, epsilon=1e-3):
 ##############################################################################
 
 
-def find_boundaries(f, lo = -1, hi = 1):
+def find_boundaries(f, lo=-1, hi=1):
     '''
     Returns a tuple (lo,hi).
     If f is a convex function, then the
@@ -194,11 +194,11 @@ def find_boundaries(f, lo = -1, hi = 1):
         you're done; return lo,hi
     '''
 
-    mid = (lo+hi)/2
+    mid = (lo + hi) / 2
     if f(lo) > f(mid):
-        return find_boundaries(f, lo=lo*2, hi=hi)
+        return find_boundaries(f, lo=lo * 2, hi=hi)
     elif f(hi) < f(mid):
-        return find_boundaries(f, lo=lo, hi=hi*2)
+        return find_boundaries(f, lo=lo, hi=hi * 2)
     else:
         return (lo, hi)
 
